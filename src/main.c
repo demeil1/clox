@@ -6,6 +6,7 @@
 #include "chunk.h"
 #include "debug.h"
 #include "vm.h"
+#include "memory.h"
 
 static void repl() {
 	char line[1024];
