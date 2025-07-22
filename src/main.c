@@ -6,7 +6,6 @@
 #include "chunk.h"
 #include "debug.h"
 #include "vm.h"
-#include "memory.h"
 
 static void repl() {
 	char line[1024];
@@ -17,15 +16,15 @@ static void repl() {
 			printf("\n");
 			break;
 		}
-		
-		interperet(line);
+
+		interpret(line);
 	}
 }
 
 static char* readFile(const char* path) {
 	FILE* file = fopen(path, "rb");
 	if (file == NULL) {
-		fprintf(stderr, "Could not open file %s\n", path);
+		fprintf(stderr, "Could not open file \"%s\".\n", path);
 		exit(74);
 	}
 
@@ -34,14 +33,16 @@ static char* readFile(const char* path) {
 	rewind(file);
 
 	char* buffer = (char*)malloc(fileSize + 1);
+
 	if (buffer == NULL) {
-		fprintf(stderr, "Not enough memory to read %s\n", path);
+		fprintf(stderr, "Not enough memory to read \"%s\".\n", path);
 		exit(74);
 	}
 
 	size_t bytesRead = fread(buffer, sizeof(char), fileSize, file);
-	if (bytesRead < fileSize) { 
-		fprintf(stderr, "Could not read file %s\n", path);
+	if (bytesRead < fileSize) {
+		fprintf(stderr, "Could not read file \"%s\".\n", path);
+		exit(74);
 	}
 
 	buffer[bytesRead] = '\0';
@@ -52,11 +53,11 @@ static char* readFile(const char* path) {
 
 static void runFile(const char* path) {
 	char* source = readFile(path);
-	InterpreterResult result = interperet(source);
-	free(source);
+	InterpretResult result = interpret(source);
+	free(source); // [owner]
 
-	if (result == INTERPERET_COMPILE_ERROR) exit(65);
-	if (result == INTERPERET_RUNTIME_ERROR) exit(70);
+	if (result == INTERPRET_COMPILE_ERROR) exit(65);
+	if (result == INTERPRET_RUNTIME_ERROR) exit(70);
 }
 
 int main(int argc, const char* argv[]) {
