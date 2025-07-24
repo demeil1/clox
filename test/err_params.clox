@@ -1,0 +1,14 @@
+fun too_few_params(i) {
+	print "Unreachable";
+}
+
+fun too_many_params(i, j, k) {
+	print "Unreachable";
+}
+
+var i = 0;
+var j = 0;
+too_few_params(i, j);
+
+var k = 0;
+too_many_params(k);

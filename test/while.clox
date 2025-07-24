@@ -1,0 +1,8 @@
+var counter = 0;
+var i = 0;
+while (i < 101) {
+	counter = counter + i;
+	i = i + 1;
+}
+
+print counter;

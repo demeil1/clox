@@ -1,0 +1,5 @@
+fun a() {
+	print "This is a Clox function!";
+}
+
+a();

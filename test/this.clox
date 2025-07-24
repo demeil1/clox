@@ -1,0 +1,12 @@
+class Counter {
+	compute() {
+		for (var i = 0; i < 101; i = i + 1) {
+			this.j = this.j + 1;
+		}
+	}
+}
+
+var a = Counter();
+a.j = 0;
+a.compute();
+print a.j;

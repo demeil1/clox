@@ -1,0 +1,13 @@
+fun a() {
+	var counter = 0;
+	fun b() {
+		for (var i = 0; i < 101; i = i + 1) {
+			counter = counter + i;
+		}
+		print counter;
+	}
+	return b;
+}
+
+var c = a();
+c();

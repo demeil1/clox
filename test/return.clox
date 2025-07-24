@@ -1,0 +1,5 @@
+fun b() {
+	return "This string was returned from a function";
+}
+
+print b();
