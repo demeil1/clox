@@ -30,7 +30,7 @@ Garbage Collection, and many more.
 Clox saw runtime improvements of 90% or more in many intensive functions
 over the Java implementation of Lox (Jlox). Some of the optimizations include:
 
-* Pratt Parser instead of recurive depth parsing
+* Pratt Parser instead of recursive depth parsing
 * Faster hash table probing
 * NaN boxing
 * Bytecode representation over Abstract Syntax Tree
